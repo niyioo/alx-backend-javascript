@@ -1,13 +1,9 @@
-// Only make Promise
 function getResponseFromAPI() {
   return new Promise((resolve, reject) => {
-    /* eslint-disable */
-      if (true) {
-        resolve();
-      } else {
-        reject();
-      }
-      /* eslint-enable */
+    // Perform asynchronous operations here (if needed)
+
+    // For simplicity, let's resolve the Promise immediately
+    resolve("API response data");
   });
 }
 
