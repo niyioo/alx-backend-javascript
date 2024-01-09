@@ -1,9 +1,12 @@
 function cleanSet(set, startString) {
-  // Use the filter method to get values starting with startString
+  // Use filter to get values starting with startString
   const filteredValues = Array.from(set).filter((value) => value.startsWith(startString));
 
-  // Use map to append the rest of the string and join with "-"
-  const resultString = filteredValues.map((value) => value.slice(startString.length)).join('-');
+  // Use a Set to store unique values
+  const resultSet = new Set(filteredValues);
+
+  // Convert the Set to an array, then join with "-"
+  const resultString = Array.from(resultSet).join('-');
 
   return resultString;
 }
