@@ -22,7 +22,7 @@ function countStudents(filePath) {
       students.forEach(student => {
         const field = student[3];
         if (!subjects[field]) subjects[field] = [];
-          subjects[field].push(student[0]);
+        subjects[field].push(student[0]);
       });
 
       Object.keys(subjects).forEach(field => {
