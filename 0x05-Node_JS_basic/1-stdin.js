@@ -6,7 +6,7 @@ process.stdin.on('readable', () => {
   const chunk = process.stdin.read();
   if (chunk !== null) {
     // Display the user's name
-    process.stdout.write(`Your name is: ${input}\n`);
+    process.stdout.write(`Your name is: ${chunk}\n`);
   }
 });
 
