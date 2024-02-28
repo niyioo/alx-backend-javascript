@@ -1,32 +1,33 @@
-const { readDatabase } = require('../utils');
+const readDatabase = require('../utils');
 
 class StudentsController {
-    static async getAllStudents(req, res) {
-        try {
-            const students = await readDatabase(process.argv[2]);
-            res.status(200).send('This is the list of our students\n' + JSON.stringify(students));
-        } catch (error) {
-            res.status(500).send(error.message);
-        }
-    }
+  static getAllStudents(request, response) {
+    readDatabase(process.argv[2].toString()).then((studentRecords) => {
+      const output = [];
+      output.push('This is the list of our students');
+      const fields = Object.keys(studentRecords);
+      fields.sort();
+      for (let i = 0; i < fields.length; i += 1) {
+        output.push(`Number of students in ${fields[i]}: ${studentRecords[fields[i]].length}. List: ${studentRecords[fields[i]].join(', ')}`);
+      }
+      response.status(200).send(output.join('\n'));
+    }).catch(() => {
+      response.status(500).send('Cannot load the database');
+    });
+  }
 
-    static async getAllStudentsByMajor(req, res) {
-        const { major } = req.params;
-        if (major !== 'CS' && major !== 'SWE') {
-            return res.status(500).send('Major parameter must be CS or SWE');
-        }
-
-        try {
-            const students = await readDatabase(process.argv[2]);
-            if (students[major]) {
-                res.status(200).send(`List: ${students[major].join(', ')}`);
-            } else {
-                res.status(200).send('No students found for the specified major');
-            }
-        } catch (error) {
-            res.status(500).send(error.message);
-        }
-    }
+  static getAllStudentsByMajor(request, response) {
+    const major = request.params.major;
+    readDatabase(process.argv[2].toString()).then((studentRecords) => {
+      if (!(major in studentRecords)) {
+        response.status(500).send('Major parameter must be CS or SWE');
+      } else {
+        response.status(200).send(`List: ${studentRecords[major].join(', ')}`);
+      }
+    }).catch(() => {
+      response.status(500).send('Cannot load the database');
+    });
+  }
 }
 
 module.exports = StudentsController;
