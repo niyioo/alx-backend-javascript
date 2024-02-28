@@ -7,19 +7,14 @@ const fs = require('fs');
  */
 function countStudents(path) {
     return new Promise((resolve, reject) => {
-        // Read the database file asynchronously
         fs.readFile(path, 'utf8', (error, data) => {
             if (error) {
-                // Reject the promise if there's an error reading the file
                 reject(new Error('Cannot load the database'));
             } else {
-                // Split the data into lines and filter out empty lines
                 const lines = data.split('\n').filter(line => line.trim() !== '');
 
-                // Initialize counters for each field
                 const fieldCounts = {};
 
-                // Iterate over each line to count students in each field
                 lines.forEach(line => {
                     const [firstName, , field] = line.split(',');
                     if (fieldCounts[field]) {
@@ -29,15 +24,12 @@ function countStudents(path) {
                     }
                 });
 
-                // Log the total number of students
                 console.log(`Number of students: ${lines.length}`);
 
-                // Log the number of students in each field and their names
                 for (const field in fieldCounts) {
                     console.log(`Number of students in ${field}: ${fieldCounts[field].length}. List: ${fieldCounts[field].join(', ')}`);
                 }
 
-                // Resolve the promise
                 resolve();
             }
         });
