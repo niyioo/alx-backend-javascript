@@ -1,7 +1,12 @@
 const sinon = require('sinon');
-const assert = require('assert');
+const { describe, it } = require('mocha');
 const Utils = require('./utils');
 const sendPaymentRequestToApi = require('./3-payment');
+
+// Import describe and it from Mocha
+
+// Import assert if you are using it
+// const assert = require('assert');
 
 describe('sendPaymentRequestToApi', () => {
   it('should call Utils.calculateNumber with correct arguments', () => {
