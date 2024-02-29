@@ -1,26 +1,16 @@
-const sinon = require('sinon');
 const { describe, it } = require('mocha');
-const Utils = require('./utils');
+const sinon = require('sinon');
+const assert = require('assert');
 const sendPaymentRequestToApi = require('./4-payment');
-
-// Import describe and it from Mocha
-
-// Remove unused assert import
-// const assert = require('assert');
+const Utils = require('./utils');
 
 describe('sendPaymentRequestToApi', () => {
-  it('should call Utils.calculateNumber with correct arguments and log correct message', () => {
-    const calculateNumberStub = sinon.stub(Utils, 'calculateNumber').returns(10);
-    const consoleSpy = sinon.spy(console, 'log');
-    const totalAmount = 100;
-    const totalShipping = 20;
+  it('check that Utils.calculateNumber is stubbed', () => {
+    const spy = sinon.spy(console, 'log');
+    const stub = sinon.stub(Utils, 'calculateNumber').returns(10);
+    sendPaymentRequestToApi(100, 20);
 
-    sendPaymentRequestToApi(totalAmount, totalShipping);
-
-    sinon.assert.calledWithExactly(calculateNumberStub, 'SUM', totalAmount, totalShipping);
-    sinon.assert.calledWithExactly(consoleSpy, 'The total is: 10');
-
-    calculateNumberStub.restore();
-    consoleSpy.restore();
+    assert(spy.withArgs('The total is: 10').calledOnce);
+    assert(stub.withArgs('SUM', 100, 20).calledOnce);
   });
 });
