@@ -1,21 +1,21 @@
 {
-  "name": "0x13-unittests_in_js",
+  "name": "0x06-unittests_in_js",
   "version": "1.0.0",
-  "description": "Unit tests in JavaScript with Mocha and the assert library.",
-  "main": "0-calcul.js",
+  "description": "unit testing in js",
   "scripts": {
-    "test": "Mocha"
+    "test": "mocha",
+    "lint": "./node_modules/.bin/eslint",
+    "check-lint": "lint [0-9]*.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "assert": "^2.1.0",
-    "chai": "^4.3.6",
-    "eslint": "^8.57.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.29.1",
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-mocha": "^10.0.3",
-    "mocha": "^9.2.2",
+    "chai": "^4.3.6",
+    "mocha": "^9.2.0",
     "sinon": "^12.0.1"
   }
 }
