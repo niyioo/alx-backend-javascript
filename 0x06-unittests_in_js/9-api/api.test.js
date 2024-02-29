@@ -1,5 +1,6 @@
-const { expect } = require('chai');
-const request = require('request');
+const request = require("request");
+const {describe, it} = require("mocha");
+const expect = require("chai").expect;
 
 describe('Cart page', () => {
   it('should return correct status code when :id is a number', (done) => {
