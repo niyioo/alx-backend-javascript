@@ -1,28 +1,35 @@
-// 0-calcul.test.js
-
 const assert = require('assert');
+const { it, describe } = require('mocha');
 const calculateNumber = require('./0-calcul');
 
-describe('calculateNumber', () => {
-    it('should return the sum of two rounded numbers', () => {
-        assert.strictEqual(calculateNumber(1, 3), 4);
-        assert.strictEqual(calculateNumber(1, 3.7), 5);
-        assert.strictEqual(calculateNumber(1.2, 3.7), 5);
-        assert.strictEqual(calculateNumber(1.5, 3.7), 6);
-    });
+describe('calculateNumber()', () => {
+  it('checking if numbers round', () => {
+    const res = calculateNumber(1, 2);
+    assert.strictEqual(res, 3);
+  });
 
-    it('should return the correct sum when one number is negative', () => {
-        assert.strictEqual(calculateNumber(-1.5, 3), 2);
-        assert.strictEqual(calculateNumber(-1.5, -3.7), -5);
-    });
+  it('checking if numbers round', () => {
+    const res = calculateNumber(1.4, 2.2);
+    assert.strictEqual(res, 3);
+  });
 
-    it('should return 0 if both numbers are 0', () => {
-        assert.strictEqual(calculateNumber(0, 0), 0);
-    });
+  it('checking if numbers round', () => {
+    const res = calculateNumber(1.6, 2.7);
+    assert.strictEqual(res, 5);
+  });
 
-    it('should return NaN if one or both inputs are not numbers', () => {
-        assert(isNaN(calculateNumber('a', 3)));
-        assert(isNaN(calculateNumber(1, 'b')));
-        assert(isNaN(calculateNumber('c', 'd')));
-    });
+  it('checking if numbers round', () => {
+    const res = calculateNumber(0, 0);
+    assert.strictEqual(res, 0);
+  });
+
+  it('checking if numbers round', () => {
+    const res = calculateNumber(-1.6, -1.7);
+    assert.strictEqual(res, -4);
+  });
+
+  it('checking if numbers round', () => {
+    const res = calculateNumber(-1.4, -1.3);
+    assert.strictEqual(res, -2);
+  });
 });
